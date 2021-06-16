@@ -1,5 +1,4 @@
 import os
-from re import search
 from kaggle.api.kaggle_api_extended import KaggleApi
 from dotenv import load_dotenv
 
