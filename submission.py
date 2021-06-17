@@ -1,21 +1,27 @@
-import os
 from kaggle.api.kaggle_api_extended import KaggleApi
-from dotenv import load_dotenv
+from config import *
 
-load_dotenv()
 api = KaggleApi()
 api.authenticate()
 
 
 def download_datasets():
     api.dataset_download_files(
-        'xhlulu/siim-covid19-resized-to-256px-jpg', path=os.getenv('DATASET_PATH'))
+        'xhlulu/siim-covid19-resized-to-256px-jpg', path=DATASET_PATH)
     api.dataset_download_files(
-        'dschettler8845/siim-covid19-updated-train-labels', path=os.getenv('DATASET_PATH')
-    )
+        'dschettler8845/siim-covid19-updated-train-labels', path=DATASET_PATH)
     api.competition_download_files(
-        'siim-covid19-detection', path=os.getenv('DATASET_PATH'))
+        COMPETITION, path=DATASET_PATH)
+
+
+def download_sample_submission():
+    api.competition_download_file(
+        COMPETITION, 'sample_submission.csv', path='./')
+
+
+def submit_result(message: str):
+    api.competition_submit(SUBMISSION_DATA_PATH, message, COMPETITION)
 
 
 if __name__ == '__main__':
-    download_datasets()
+    submit_result('Test Submission')
