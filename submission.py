@@ -23,5 +23,10 @@ def submit_result(message: str):
     api.competition_submit(SUBMISSION_DATA_PATH, message, COMPETITION)
 
 
+def check_kernel_status():
+    api.kernel_status()
+
+
 if __name__ == '__main__':
-    submit_result('Test Submission')
+    # submit_result('Test Submission')
+    pass
