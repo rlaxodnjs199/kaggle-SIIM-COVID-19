@@ -9,10 +9,19 @@ import pandas as pd
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, request
 
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+PGSQL_DB = os.getenv('PGSQL_DB')
+PGSQL_USER = os.getenv('PGSQL_USER')
+PGSQL_PW = os.getenv('PGSQL_PW')
+
 server = Flask(__name__)
 app = dash.Dash(__name__, server=server, suppress_callback_exceptions=True)
 app.server.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.server.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://twkim:clsrn123@localhost/siim_covid_19_detection"
+app.server.config["SQLALCHEMY_DATABASE_URI"] = f"postgresql://{PGSQL_USER}:{PGSQL_PW}@localhost/{PGSQL_DB}"
 
 db = SQLAlchemy(app.server)
 
