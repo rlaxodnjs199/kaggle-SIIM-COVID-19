@@ -7,16 +7,16 @@ api.authenticate()
 
 def download_datasets():
     api.dataset_download_files(
-        'xhlulu/siim-covid19-resized-to-256px-jpg', path=DATASET_PATH)
+        "xhlulu/siim-covid19-resized-to-256px-jpg", path=DATASET_PATH
+    )
     api.dataset_download_files(
-        'dschettler8845/siim-covid19-updated-train-labels', path=DATASET_PATH)
-    api.competition_download_files(
-        COMPETITION, path=DATASET_PATH)
+        "dschettler8845/siim-covid19-updated-train-labels", path=DATASET_PATH
+    )
+    api.competition_download_files(COMPETITION, path=DATASET_PATH)
 
 
 def download_sample_submission():
-    api.competition_download_file(
-        COMPETITION, 'sample_submission.csv', path='./')
+    api.competition_download_file(COMPETITION, "sample_submission.csv", path="./")
 
 
 def submit_result(message: str):
@@ -27,6 +27,5 @@ def check_kernel_status():
     api.kernel_status()
 
 
-if __name__ == '__main__':
-    # submit_result('Test Submission')
-    pass
+if __name__ == "__main__":
+    download_datasets()
